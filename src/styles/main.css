@@ -1,0 +1,238 @@
+/**
+ * Main Design System & Scrapbook Theme
+ * Color Palette:
+ * - Pink: #FFD6E7
+ * - Baby Blue: #CDEBFF
+ * - Lavender: #E5D8FF
+ * - Butter Yellow: #FFF0AD
+ * - Cream: #FFF9F0
+ * - Coral: #FF8F9C
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap');
+
+:root {
+  --color-pink: #FFD6E7;
+  --color-pink-deep: #FF8F9C;
+  --color-blue: #CDEBFF;
+  --color-blue-deep: #7AC1EB;
+  --color-lavender: #E5D8FF;
+  --color-lavender-deep: #B49AFF;
+  --color-yellow: #FFF0AD;
+  --color-yellow-deep: #F6D86B;
+  --color-cream: #FFF9F0;
+  --color-text-dark: #372A3C;
+  --color-text-muted: #6B5E70;
+  --color-white: #FFFFFF;
+
+  --shadow-sm: 0 4px 12px rgba(90, 60, 110, 0.08);
+  --shadow-md: 0 8px 24px rgba(90, 60, 110, 0.12);
+  --shadow-lg: 0 16px 36px rgba(90, 60, 110, 0.16);
+  --shadow-polaroid: 0 12px 28px rgba(70, 40, 80, 0.14), 0 2px 6px rgba(0,0,0,0.06);
+
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-full: 9999px;
+
+  --font-main: 'Outfit', sans-serif;
+  --font-handwriting: 'Caveat', cursive;
+  --font-body: 'Quicksand', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-text-dark);
+  overflow-x: hidden;
+  line-height: 1.6;
+  position: relative;
+  background-image: 
+    radial-gradient(#E8D7EE 1px, transparent 1px),
+    radial-gradient(#E8D7EE 1px, #FFF9F0 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-pink-deep);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-cream);
+}
+
+/* Scrapbook Decorative Base */
+.scrapbook-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Washi Tape Accent */
+.washi-tape {
+  position: absolute;
+  height: 28px;
+  width: 110px;
+  background: rgba(255, 240, 173, 0.85);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  z-index: 10;
+  clip-path: polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%);
+  pointer-events: none;
+}
+.washi-tape.pink {
+  background: rgba(255, 214, 231, 0.88);
+  transform: translateX(-50%) rotate(2.5deg);
+}
+.washi-tape.blue {
+  background: rgba(205, 235, 255, 0.88);
+  transform: translateX(-50%) rotate(-2deg);
+}
+.washi-tape.lavender {
+  background: rgba(229, 216, 255, 0.88);
+  transform: translateX(-50%) rotate(4deg);
+}
+
+/* Cute Buttons */
+.cute-btn {
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  border: 3px solid var(--color-text-dark);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 4px 5px 0 var(--color-text-dark);
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+}
+
+.cute-btn:hover {
+  transform: translate(-2px, -3px);
+  box-shadow: 6px 8px 0 var(--color-text-dark);
+}
+
+.cute-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--color-text-dark);
+}
+
+.cute-btn.primary {
+  background: var(--color-pink);
+  color: var(--color-text-dark);
+}
+.cute-btn.coral {
+  background: var(--color-pink-deep);
+  color: #fff;
+}
+.cute-btn.yellow {
+  background: var(--color-yellow);
+  color: var(--color-text-dark);
+}
+.cute-btn.blue {
+  background: var(--color-blue);
+  color: var(--color-text-dark);
+}
+.cute-btn.lavender {
+  background: var(--color-lavender);
+  color: var(--color-text-dark);
+}
+
+/* Badges */
+.cute-badge {
+  font-family: var(--font-main);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-text-dark);
+  box-shadow: 2px 2px 0 var(--color-text-dark);
+  display: inline-block;
+}
+
+/* Section Header Typography */
+.section-title-wrap {
+  text-align: center;
+  margin-bottom: 45px;
+  position: relative;
+}
+.section-tag {
+  font-family: var(--font-handwriting);
+  font-size: 1.6rem;
+  color: var(--color-pink-deep);
+  font-weight: 700;
+  display: block;
+  transform: rotate(-1.5deg);
+  margin-bottom: 4px;
+}
+.section-title {
+  font-family: var(--font-main);
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--color-text-dark);
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+  line-height: 1.2;
+}
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  max-width: 580px;
+  margin: 12px auto 0;
+  font-weight: 500;
+}
+
+/* Floating Decorative Stickers in Background */
+.bg-doodle {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.85;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+/* Accessibility Focus States */
+button:focus-visible, a:focus-visible {
+  outline: 3px solid var(--color-pink-deep);
+  outline-offset: 3px;
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

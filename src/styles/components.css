@@ -1,0 +1,1335 @@
+/**
+ * Component Styles for Best-Friend Birthday Surprise
+ */
+
+/* ==========================================================================
+   1. WELCOME SCREEN
+   ========================================================================== */
+.welcome-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #FFF9F0 0%, #FFD6E7 50%, #E5D8FF 100%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  overflow: hidden;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+}
+
+.welcome-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+}
+
+.welcome-tag {
+  font-family: var(--font-handwriting);
+  font-size: 2rem;
+  color: var(--color-pink-deep);
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 8px;
+  transform: rotate(-3deg);
+}
+
+.welcome-heading {
+  font-family: var(--font-main);
+  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+  font-weight: 800;
+  color: var(--color-text-dark);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.welcome-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+/* Animated Gift Box */
+.gift-box-wrapper {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  margin: 10px auto 35px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gift-box-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.gift-box-wrapper.shaking {
+  animation: giftShake 0.6s infinite;
+}
+
+.gift-box {
+  width: 130px;
+  height: 110px;
+  background: var(--color-pink-deep);
+  border: 4px solid var(--color-text-dark);
+  border-radius: 12px;
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  box-shadow: 6px 6px 0 var(--color-text-dark);
+  overflow: hidden;
+}
+
+.gift-ribbon-vertical {
+  width: 24px;
+  height: 100%;
+  background: var(--color-yellow);
+  border-left: 3px solid var(--color-text-dark);
+  border-right: 3px solid var(--color-text-dark);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gift-ribbon-horizontal {
+  height: 22px;
+  width: 100%;
+  background: var(--color-yellow);
+  border-top: 3px solid var(--color-text-dark);
+  border-bottom: 3px solid var(--color-text-dark);
+  position: absolute;
+  top: 45%;
+}
+
+.gift-lid {
+  width: 150px;
+  height: 38px;
+  background: #FF7083;
+  border: 4px solid var(--color-text-dark);
+  border-radius: 10px;
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  box-shadow: 4px 4px 0 var(--color-text-dark);
+  z-index: 5;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gift-box-wrapper.opened .gift-lid {
+  transform: translateY(-55px) rotate(-16deg);
+}
+
+.gift-bow {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2px;
+  z-index: 6;
+}
+
+.bow-left, .bow-right {
+  width: 32px;
+  height: 24px;
+  background: var(--color-yellow);
+  border: 3px solid var(--color-text-dark);
+  border-radius: 50% 50% 10% 50%;
+}
+.bow-right {
+  transform: scaleX(-1);
+}
+.bow-center {
+  width: 16px;
+  height: 16px;
+  background: var(--color-yellow-deep);
+  border: 3px solid var(--color-text-dark);
+  border-radius: 50%;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Surprise Revealed State */
+.welcome-reveal-card {
+  display: none;
+  background: var(--color-white);
+  border: 4px solid var(--color-text-dark);
+  border-radius: var(--radius-lg);
+  padding: 30px 24px;
+  box-shadow: 8px 10px 0 var(--color-text-dark);
+  margin-top: 20px;
+  animation: modalPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.welcome-reveal-card.show {
+  display: block;
+}
+
+.reveal-title {
+  font-family: var(--font-main);
+  font-size: 2.2rem;
+  color: var(--color-pink-deep);
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.besties-intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin: 20px 0 24px;
+}
+
+.sender-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.sender-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid var(--color-text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 3px 3px 0 var(--color-text-dark);
+  font-weight: 800;
+}
+
+.sender-name {
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.banter-bubble {
+  background: var(--color-cream);
+  border: 2px dashed var(--color-text-dark);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  margin: 14px 0 24px;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.skip-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 18px;
+  display: inline-block;
+  opacity: 0.8;
+}
+.skip-btn:hover {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   2. BIRTHDAY HERO SECTION
+   ========================================================================== */
+.hero-section {
+  padding: 80px 20px 70px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-badge-wrap {
+  margin-bottom: 16px;
+}
+
+.hero-main-title {
+  font-family: var(--font-main);
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 800;
+  color: var(--color-text-dark);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.hero-main-title .highlight {
+  color: var(--color-pink-deep);
+  position: relative;
+  display: inline-block;
+}
+
+.typewriter-container {
+  min-height: 48px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.typewriter-text {
+  font-family: var(--font-handwriting);
+  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.6rem;
+  background-color: var(--color-pink-deep);
+  margin-left: 4px;
+  animation: typewriterBlink 0.9s infinite;
+  vertical-align: middle;
+}
+
+.hero-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Floating Balloons in Hero */
+.floating-hero-balloon {
+  position: absolute;
+  font-size: 2.8rem;
+  animation: floatHigh 4s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+.floating-hero-balloon.left {
+  top: 15%;
+  left: 8%;
+  animation-delay: 0.5s;
+}
+.floating-hero-balloon.right {
+  top: 25%;
+  right: 8%;
+  animation-delay: 1.2s;
+}
+
+/* ==========================================================================
+   3. PHOTO GALLERY (SCRAPBOOK POLAROIDS)
+   ========================================================================== */
+.gallery-section {
+  padding: 70px 20px;
+  position: relative;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 36px 28px;
+  margin-top: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.polaroid-card {
+  background: var(--color-white);
+  padding: 16px 16px 22px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-polaroid);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.polaroid-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 18px 38px rgba(70, 40, 80, 0.22);
+  z-index: 15;
+}
+
+.polaroid-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f0edf2;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.polaroid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.polaroid-card:hover .polaroid-img {
+  transform: scale(1.04);
+}
+
+.polaroid-caption {
+  font-family: var(--font-handwriting);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.25;
+}
+
+.polaroid-date {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: 4px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.gallery-actions {
+  text-align: center;
+  margin-top: 45px;
+}
+
+/* ==========================================================================
+   4. LIGHTBOX MODAL
+   ========================================================================== */
+.lightbox-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 20, 36, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 99990;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.lightbox-modal.active {
+  display: flex;
+}
+
+.lightbox-inner {
+  background: var(--color-white);
+  padding: 20px 20px 28px;
+  border-radius: 12px;
+  max-width: 580px;
+  width: 100%;
+  border: 4px solid var(--color-text-dark);
+  box-shadow: 10px 14px 0 var(--color-text-dark);
+  position: relative;
+  animation: modalPop 0.35s ease forwards;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 42px;
+  height: 42px;
+  background: var(--color-pink-deep);
+  border: 3px solid var(--color-text-dark);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 0 var(--color-text-dark);
+  transition: transform 0.2s;
+  z-index: 20;
+}
+.lightbox-close-btn:hover {
+  transform: scale(1.1);
+}
+
+.lightbox-img {
+  width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #1A1420;
+  border: 2px solid var(--color-text-dark);
+}
+
+.lightbox-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.lightbox-nav-btn {
+  background: var(--color-cream);
+  border: 2px solid var(--color-text-dark);
+  border-radius: var(--radius-full);
+  padding: 8px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--color-text-dark);
+  font-family: var(--font-main);
+}
+.lightbox-nav-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--color-text-dark);
+}
+
+/* ==========================================================================
+   5. VIDEO MEMORY WALL
+   ========================================================================== */
+.video-section {
+  padding: 70px 20px;
+  position: relative;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.video-card {
+  background: var(--color-white);
+  border: 3px solid var(--color-text-dark);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: 6px 8px 0 var(--color-text-dark);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  position: relative;
+}
+
+.video-card:hover {
+  transform: translate(-3px, -4px);
+  box-shadow: 9px 12px 0 var(--color-text-dark);
+}
+
+.video-card.featured {
+  background: #FFFBF2;
+  border-color: var(--color-pink-deep);
+}
+
+.video-thumb {
+  width: 100%;
+  height: 180px;
+  background: #1A1420;
+  border-radius: 12px;
+  border: 2px solid var(--color-text-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-thumb-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.video-card:hover .video-thumb-preview {
+  transform: scale(1.05);
+}
+
+.video-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 20, 32, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s ease;
+  z-index: 2;
+}
+
+.video-card:hover .video-thumb-overlay {
+  background: rgba(26, 20, 32, 0.12);
+}
+
+.video-play-btn-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid var(--color-text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--color-text-dark);
+  box-shadow: 3px 3px 0 var(--color-text-dark);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding-left: 3px;
+}
+
+.video-card:hover .video-play-btn-circle {
+  transform: scale(1.15);
+  background: var(--color-yellow);
+}
+
+.video-play-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px solid var(--color-text-dark);
+  border-radius: var(--radius-full);
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 3;
+}
+
+.video-featured-badge {
+  z-index: 3;
+}
+
+.video-info {
+  margin-top: 14px;
+}
+
+.video-title {
+  font-family: var(--font-main);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.video-caption {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+/* Video Player Modal */
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(20, 15, 25, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 99992;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.video-modal.active {
+  display: flex;
+}
+
+.video-modal-inner {
+  background: var(--color-white);
+  border: 4px solid var(--color-text-dark);
+  border-radius: var(--radius-lg);
+  max-width: 680px;
+  width: 100%;
+  padding: 24px;
+  position: relative;
+  box-shadow: 10px 14px 0 var(--color-text-dark);
+  animation: modalPop 0.35s ease forwards;
+}
+
+.video-screen-container {
+  width: 100%;
+  height: 340px;
+  background: #1A1420;
+  border: 3px solid var(--color-text-dark);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   6. PERSONAL LETTERS (FROM VAMSI & GOWTHAMI)
+   ========================================================================== */
+.letters-section {
+  padding: 70px 20px;
+  position: relative;
+}
+
+.envelopes-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px 32px;
+  margin-top: 45px;
+}
+
+.envelope-card {
+  background: var(--color-white);
+  border: 4px solid var(--color-text-dark);
+  border-radius: var(--radius-lg);
+  padding: 30px 24px;
+  box-shadow: 8px 10px 0 var(--color-text-dark);
+  position: relative;
+  text-align: center;
+  transition: transform 0.25s ease;
+}
+
+.envelope-card:hover {
+  transform: translateY(-4px);
+}
+
+.envelope-card.pink-theme {
+  background: #FFF3F8;
+  border-color: var(--color-text-dark);
+}
+.envelope-card.yellow-theme {
+  background: #FFFDF0;
+  border-color: var(--color-text-dark);
+}
+
+.envelope-stamp {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 48px;
+  height: 56px;
+  background: var(--color-white);
+  border: 2px dashed var(--color-pink-deep);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  transform: rotate(5deg);
+}
+
+.envelope-icon {
+  font-size: 3.5rem;
+  margin: 10px 0 16px;
+  display: inline-block;
+  animation: wobble 4s ease-in-out infinite;
+}
+
+.envelope-sender-title {
+  font-family: var(--font-main);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-text-dark);
+}
+
+.envelope-preview-text {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin: 10px auto 24px;
+  max-width: 320px;
+}
+
+.letter-opened-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2F855A;
+  margin-top: 12px;
+}
+
+/* Stamped Forever Banner */
+.stuck-forever-banner {
+  display: none;
+  background: linear-gradient(135deg, var(--color-pink), var(--color-yellow));
+  border: 4px solid var(--color-text-dark);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  text-align: center;
+  margin-top: 45px;
+  box-shadow: 6px 8px 0 var(--color-text-dark);
+  animation: modalPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.stuck-forever-banner.show {
+  display: block;
+}
+
+.stuck-forever-banner h3 {
+  font-family: var(--font-main);
+  font-size: clamp(1.4rem, 3.2vw, 1.9rem);
+  font-weight: 800;
+  color: var(--color-text-dark);
+}
+
+/* Letter Modal */
+.letter-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 20, 36, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 99995;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.letter-modal.active {
+  display: flex;
+}
+
+.letter-modal-paper {
+  background: #FFFDF9;
+  background-image: linear-gradient(#f0e6d6 1px, transparent 1px);
+  background-size: 100% 28px;
+  line-height: 28px;
+  border: 4px solid var(--color-text-dark);
+  border-radius: var(--radius-md);
+  max-width: 620px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 36px 30px;
+  position: relative;
+  box-shadow: 12px 16px 0 var(--color-text-dark);
+  animation: modalPop 0.4s ease forwards;
+}
+
+.letter-greeting {
+  font-family: var(--font-handwriting);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-pink-deep);
+  margin-bottom: 12px;
+}
+
+.letter-body {
+  font-size: 1.05rem;
+  color: #2F2433;
+  white-space: pre-line;
+  font-weight: 500;
+}
+
+.letter-signoff {
+  margin-top: 24px;
+  font-family: var(--font-handwriting);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-pink-deep);
+  text-align: right;
+}
+
+/* ==========================================================================
+   7. INTERACTIVE BIRTHDAY CAKE
+   ========================================================================== */
+.cake-section {
+  padding: 70px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.cake-card {
+  background: var(--color-white);
+  border: 4px solid var(--color-text-dark);
+  border-radius: var(--radius-lg);
+  padding: 40px 24px;
+  max-width: 620px;
+  margin: 0 auto;
+  box-shadow: 8px 12px 0 var(--color-text-dark);
+  position: relative;
+}
+
+.cake-stage {
+  position: relative;
+  width: 260px;
+  height: 240px;
+  margin: 20px auto 30px;
+}
+
+.candle-flame {
+  animation: flameFlicker 0.8s infinite ease-in-out;
+  transform-origin: center bottom;
+  transition: opacity 0.3s;
+}
+
+.candle-flame.extinguished {
+  opacity: 0;
+  animation: none;
+}
+
+.smoke-puff {
+  display: none;
+  position: absolute;
+  font-size: 1.4rem;
+  color: #A098A6;
+  pointer-events: none;
+}
+
+.smoke-puff.rising {
+  display: block;
+  animation: smokeRise 1.2s forwards;
+}
+
+.wish-reveal-box {
+  display: none;
+  background: var(--color-yellow);
+  border: 3px solid var(--color-text-dark);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  margin-top: 24px;
+  box-shadow: 4px 5px 0 var(--color-text-dark);
+  animation: modalPop 0.4s ease forwards;
+}
+
+.wish-reveal-box.show {
+  display: block;
+}
+
+/* ==========================================================================
+   8. FRIENDSHIP LOVE METER
+   ========================================================================== */
+.meter-section {
+  padding: 70px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.meter-card {
+  background: var(--color-white);
+  border: 4px solid var(--color-text-dark);
+  border-radius: var(--radius-lg);
+  padding: 40px 24px;
+  max-width: 580px;
+  margin: 0 auto;
+  box-shadow: 8px 12px 0 var(--color-text-dark);
+}
+
+.meter-track {
+  width: 100%;
+  height: 36px;
+  background: #F1EBF5;
+  border: 3px solid var(--color-text-dark);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin: 24px auto 16px;
+  position: relative;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.meter-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-blue), var(--color-pink-deep), #FF3366);
+  border-radius: var(--radius-full);
+  transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.meter-percentage {
+  font-family: var(--font-main);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--color-pink-deep);
+  margin-top: 10px;
+}
+
+.meter-error-card {
+  display: none;
+  background: #FFF0F2;
+  border: 3px solid #FF3366;
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-top: 20px;
+  box-shadow: 4px 5px 0 #FF3366;
+  animation: modalPop 0.4s ease forwards;
+}
+
+.meter-error-card.show {
+  display: block;
+}
+
+.meter-card.shaking {
+  animation: meterShake 0.7s infinite;
+}
+
+/* ==========================================================================
+   9. POP THE BALLOONS MINI-GAME
+   ========================================================================== */
+.balloon-section {
+  padding: 70px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.balloon-game-container {
+  background: var(--color-white);
+  border: 4px solid var(--color-text-dark);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  max-width: 780px;
+  margin: 0 auto;
+  box-shadow: 8px 12px 0 var(--color-text-dark);
+}
+
+.game-scoreboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-cream);
+  border: 2px solid var(--color-text-dark);
+  border-radius: var(--radius-full);
+  padding: 8px 20px;
+  margin-bottom: 20px;
+  font-family: var(--font-main);
+  font-weight: 700;
+}
+
+.balloon-play-arena {
+  width: 100%;
+  height: 380px;
+  background: linear-gradient(180deg, #E5D8FF 0%, #CDEBFF 50%, #FFF9F0 100%);
+  border: 3px solid var(--color-text-dark);
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  cursor: crosshair;
+  user-select: none;
+}
+
+.game-balloon {
+  position: absolute;
+  width: 68px;
+  height: 84px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  border: 3px solid var(--color-text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.1);
+}
+
+.game-balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 8px solid var(--color-text-dark);
+}
+
+.game-balloon-string {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background: var(--color-text-dark);
+}
+
+.revealed-message-ticker {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-handwriting);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--color-pink-deep);
+  margin-top: 16px;
+  padding: 6px 14px;
+}
+
+/* ==========================================================================
+   10. SECRET GIFT & EASTER EGG
+   ========================================================================== */
+.secret-section {
+  padding: 70px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.secret-card {
+  background: var(--color-white);
+  border: 4px solid var(--color-text-dark);
+  border-radius: var(--radius-lg);
+  padding: 40px 24px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 8px 12px 0 var(--color-text-dark);
+}
+
+.secret-certificate {
+  display: none;
+  background: #FFFBEA;
+  border: 4px double var(--color-yellow-deep);
+  border-radius: var(--radius-md);
+  padding: 28px 20px;
+  margin-top: 24px;
+  box-shadow: 4px 6px 0 rgba(0,0,0,0.08);
+  animation: modalPop 0.4s ease forwards;
+  text-align: left;
+}
+
+.secret-certificate.show {
+  display: block;
+}
+
+/* Clickable Easter Egg Icon */
+.easter-egg-sticker {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 48px;
+  height: 48px;
+  background: var(--color-yellow);
+  border: 3px solid var(--color-text-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 3px 3px 0 var(--color-text-dark);
+  cursor: pointer;
+  z-index: 999;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: wobble 3s infinite ease-in-out;
+}
+.easter-egg-sticker:hover {
+  transform: scale(1.15) rotate(10deg);
+}
+
+/* ==========================================================================
+   11. MEMORY TIMELINE
+   ========================================================================== */
+.timeline-section {
+  padding: 70px 20px;
+  position: relative;
+}
+
+.timeline-line-wrap {
+  position: relative;
+  max-width: 780px;
+  margin: 40px auto 0;
+  padding: 10px 0;
+}
+
+.timeline-line-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--color-pink-deep) 0px,
+    var(--color-pink-deep) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+.timeline-entry {
+  position: relative;
+  margin-bottom: 45px;
+  width: 46%;
+}
+
+.timeline-entry.left {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-entry.right {
+  left: 54%;
+  text-align: left;
+}
+
+.timeline-box {
+  background: var(--color-white);
+  border: 3px solid var(--color-text-dark);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: 5px 6px 0 var(--color-text-dark);
+  position: relative;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 20px;
+  width: 22px;
+  height: 22px;
+  background: var(--color-pink-deep);
+  border: 3px solid var(--color-text-dark);
+  border-radius: 50%;
+  z-index: 5;
+}
+
+.timeline-entry.left .timeline-dot {
+  right: -39px;
+}
+.timeline-entry.right .timeline-dot {
+  left: -39px;
+}
+
+/* ==========================================================================
+   12. DOCKED MUSIC PLAYER
+   ========================================================================== */
+.music-player-bar {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--color-white);
+  border: 3px solid var(--color-text-dark);
+  border-radius: var(--radius-full);
+  padding: 8px 18px 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 4px 6px 0 var(--color-text-dark);
+  z-index: 9998;
+  user-select: none;
+}
+
+.soundwave-visualizer {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 18px;
+}
+
+.soundwave-bar {
+  width: 3px;
+  height: 6px;
+  background: var(--color-pink-deep);
+  border-radius: 2px;
+}
+
+.soundwave-visualizer.playing .soundwave-bar:nth-child(1) { animation: soundwave 0.8s infinite 0.1s; }
+.soundwave-visualizer.playing .soundwave-bar:nth-child(2) { animation: soundwave 0.6s infinite 0.25s; }
+.soundwave-visualizer.playing .soundwave-bar:nth-child(3) { animation: soundwave 0.9s infinite 0.4s; }
+.soundwave-visualizer.playing .soundwave-bar:nth-child(4) { animation: soundwave 0.7s infinite 0.2s; }
+
+.music-control-btn {
+  background: var(--color-cream);
+  border: 2px solid var(--color-text-dark);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--color-text-dark);
+}
+
+/* ==========================================================================
+   13. FINAL CELEBRATION SURPRISE
+   ========================================================================== */
+.final-section {
+  padding: 80px 20px 100px;
+  text-align: center;
+  position: relative;
+}
+
+.final-card {
+  background: var(--color-white);
+  border: 4px solid var(--color-text-dark);
+  border-radius: var(--radius-lg);
+  padding: 45px 30px;
+  max-width: 760px;
+  margin: 0 auto;
+  box-shadow: 10px 14px 0 var(--color-text-dark);
+  position: relative;
+}
+
+.final-card.revealed {
+  background: #FFFDF9;
+  border-color: var(--color-pink-deep);
+}
+
+.final-letter-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: #2F2433;
+  white-space: pre-line;
+  text-align: left;
+  margin: 24px 0;
+}
+
+/* ==========================================================================
+   MOBILE & RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 768px) {
+  .scrapbook-container {
+    padding: 0 16px;
+  }
+  
+  .timeline-line-wrap::before {
+    left: 20px;
+  }
+  .timeline-entry {
+    width: calc(100% - 45px);
+    left: 45px !important;
+    text-align: left !important;
+  }
+  .timeline-entry .timeline-dot {
+    left: -33px !important;
+  }
+  
+  .music-player-bar {
+    bottom: 16px;
+    right: 16px;
+    padding: 6px 12px;
+  }
+  .music-title-tag {
+    display: none;
+  }
+  .easter-egg-sticker {
+    bottom: 16px;
+    left: 16px;
+  }
+}
